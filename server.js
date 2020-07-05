@@ -44,10 +44,7 @@ app.post("/api/notes", (req, res) => {
                 return res.send("An error occured Writing your data.");
             }
             res.json(arrayOfNotes);
-
         });
-        // Send back new db.json in json format
-        // res.json(arrayOfNotes);
     });
 });
 
