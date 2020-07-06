@@ -1,5 +1,6 @@
 const $noteTitle = $(".note-title");
 const $noteText = $(".note-textarea");
+
 const $saveNoteBtn = $(".save-note");
 const $newNoteBtn = $(".new-note");
 const $noteList = $(".list-container .list-group");
@@ -30,7 +31,7 @@ const saveNote = (note) => {
 const deleteNote = (id) => {
   console.log("delete pushed ", id)
   return $.ajax({
-    url: "api/notes/" + id,
+    url: "apgit i/notes/" + id,
     method: "DELETE",
   });
 };
