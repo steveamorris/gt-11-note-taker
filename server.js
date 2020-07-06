@@ -55,12 +55,6 @@ app.get("*", (req, res) => {
 });
 
 
-
-
-
-
-
-
 // App Listener Goes at bottom
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`)
