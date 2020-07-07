@@ -2,10 +2,8 @@ const express = require("express");
 const fs = require("fs");
 const path = require("path");
 const uuid = require("uuid");
-const { notStrictEqual } = require("assert");
 
 const app = express();
-
 const PORT = process.env.PORT || 8080;
 
 // Boilerplate for Post method
@@ -14,7 +12,7 @@ app.use(express.json());
 app.use(express.static("public"));
 
 // Add ID to note object
-//
+// Using uuid - from Traversy video
 id = uuid.v4();
 
 // Notes.html View Route
@@ -27,7 +25,6 @@ app.get("/api/notes", (req, res) => {
   fs.readFile("./db/db.json", (err, data) => {
     if (err) throw err;
     const arrayOfNotes = JSON.parse(data);
-    console.log(arrayOfNotes);
     res.json(arrayOfNotes);
   });
 });
@@ -37,13 +34,12 @@ app.post("/api/notes", (req, res) => {
   fs.readFile("./db/db.json", "utf8", (err, data) => {
     if (err) {
       return res.send("An error occured reading your data.");
-    }
+    };
     // Pass Data into Working Variable
     const arrayOfNotes = JSON.parse(data);
-    // console.log(arrayOfNotes);
     // Push POST into variable
+    // Create Unique ID
     req.body.id = uuid.v4();
-    console.log(req.body);
     arrayOfNotes.push(req.body);
     // Write arrayDB to db.json file
     fs.writeFile(
@@ -62,8 +58,6 @@ app.post("/api/notes", (req, res) => {
 
 app.delete("/api/notes/:id", (req, res) => {
   // read JSON file
-
-  console.log('going to delete: ', req.params.id)
   fs.readFile("./db/db.json", "utf8", (err, data) => {
     if (err) {
       return res.send("An error occured reading your data.");
@@ -73,7 +67,6 @@ app.delete("/api/notes/:id", (req, res) => {
     const tempArray = arrayOfNotes.filter((note) => {
       return note.id !== req.params.id;
     });
-    console.log(tempArray);
     fs.writeFile("./db/db.json",
     JSON.stringify(tempArray),
     "utf8",
