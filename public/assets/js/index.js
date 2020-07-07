@@ -31,7 +31,7 @@ const saveNote = (note) => {
 const deleteNote = (id) => {
   console.log("delete pushed ", id)
   return $.ajax({
-    url: "apgit i/notes/" + id,
+    url: "api/notes/" + id,
     method: "DELETE",
   });
 };
